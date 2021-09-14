@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-// import './App.css'
+import React from 'react'
+import GithubMark from './GithubMark'
 import './styles/sonar.scss'
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
         <div className="gridLine rotate-90"></div>
         <div className="gridLine rotate-135"></div>
       </div>
+      <GithubMark />
     </div>
   )
 }
