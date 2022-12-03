@@ -1,16 +1,17 @@
-import React from 'react'
-import image from './static/GitHub-Mark-Light-64px.png'
+import styles from './GithubMark.module.scss'
+import { ReactComponent as Github } from './static/githubMark.svg'
 
 const GithubMark = () => {
   return (
     <a
-      href="https://github.com/renodesu/sonar"
+      href="https://github.com/renodesu/pure-css-sonar"
       target="_blank"
       rel="noreferrer"
-      className="githubMark"
-      title="Check out the source code on Github! https://github.com/renodesu/sonar"
+      className={styles.link}
+      title="Check out the source code on Github!"
     >
-      <img src={image} width={32} height={32} />
+      <Github className={styles.githubMark} />
+      @renodesu
     </a>
   )
 }

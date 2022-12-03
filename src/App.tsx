@@ -1,4 +1,3 @@
-import React from 'react'
 import GithubMark from './GithubMark'
 import './styles/sonar.scss'
 
