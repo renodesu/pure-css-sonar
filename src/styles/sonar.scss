@@ -10,25 +10,31 @@
 
 .sonar {
   position: relative;
-  display: flex;
+
   overflow: hidden;
-  width: 100vw;
-  height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #000;
+
   animation: fadeInAnim 2000ms linear;
   animation-iteration-count: 1;
-  background-color: #000;
 }
 
 .ping {
   width: 0;
   height: 0;
+
+  opacity: 0;
   border: 4px solid var(--green);
   border-radius: 50%;
+
   animation: pingAnim 4s linear infinite;
   animation-delay: 1s;
-  opacity: 0;
 }
 
 .ring {
@@ -37,12 +43,15 @@
   box-shadow: var(--green-box-shadow);
 
   &::after {
+    content: "";
+
     display: block;
+
     width: 100%;
     height: 100%;
+
     border-radius: 50%;
     box-shadow: inset var(--green-box-shadow);
-    content: "";
   }
 }
 
@@ -70,12 +79,15 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  transform-origin: top left;
+
   width: 20px;
   height: 40vmin;
+
   border-left: 1px solid var(--green);
+
   animation: rotateAnim 10s infinite;
   animation-timing-function: linear;
-  transform-origin: top left;
 }
 
 // Cardinal and diagonal lines
@@ -86,12 +98,15 @@
   box-shadow: var(--green-box-shadow);
 
   &::after {
+    content: "";
+
     display: block;
+
     width: 100%;
     height: 100%;
+
     border-radius: 50%;
     box-shadow: inset var(--green-box-shadow);
-    content: "";
   }
 }
 
