@@ -15,6 +15,9 @@ function App() {
         <div className="gridLine rotate-45" />
         <div className="gridLine rotate-90" />
         <div className="gridLine rotate-135" />
+        <div className="blip" />
+        <div className="blip" />
+        <div className="blip" />
       </div>
       <GithubMark />
     </div>

@@ -19,7 +19,7 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: #000;
+  background: radial-gradient(circle, rgb(0 40 0 / 40%) 0%, #000 70%);
 
   animation: fadeInAnim 2000ms linear;
   animation-iteration-count: 1;
@@ -59,8 +59,8 @@
 @mixin ring($percentage) {
   .radius-#{$percentage} {
     top: calc(50% - #{math.div($percentage, 2)}vmin);
-    left: calc(50% - #{math.div($percentage, 2)}vmin);
     width: #{$percentage}vmin;
+    left: calc(50% - #{math.div($percentage, 2)}vmin);
     height: #{$percentage}vmin;
   }
 }
@@ -74,20 +74,73 @@
 @include mixins.deg(90);
 @include mixins.deg(135);
 
-// The circling sweep
+// The circling sweep with conic gradient trail
 .sweep {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: top left;
 
-  width: 20px;
-  height: 40vmin;
+  width: var(--sonar-size);
+  height: var(--sonar-size);
 
-  border-left: 1px solid var(--green);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 270deg,
+    rgb(0 255 0 / 3%) 300deg,
+    rgb(0 255 0 / 15%) 340deg,
+    rgb(0 255 0 / 30%) 355deg,
+    var(--green) 360deg
+  );
+  border-radius: 50%;
 
-  animation: rotateAnim 10s infinite;
+  animation: rotateAnim 4s infinite;
   animation-timing-function: linear;
+
+  // Sweep line
+  &::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 1px;
+    height: 50%;
+
+    background: var(--green);
+    box-shadow: 0 0 6px 1px rgb(0 255 0 / 50%);
+  }
+}
+
+// Blip dots
+.blip {
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px rgb(0 255 0 / 60%);
+
+  animation: blipAnim 4s ease-out infinite;
+
+  &:nth-child(1) {
+    top: 30%;
+    left: 58%;
+    animation-delay: 0.5s;
+  }
+
+  &:nth-child(2) {
+    top: 62%;
+    left: 35%;
+    animation-delay: 2s;
+  }
+
+  &:nth-child(3) {
+    top: 40%;
+    left: 70%;
+    animation-delay: 3.2s;
+  }
 }
 
 // Cardinal and diagonal lines
@@ -95,6 +148,7 @@
   position: absolute;
   top: 50%;
   width: 80vmin;
+  opacity: 0.4;
   box-shadow: var(--green-box-shadow);
 
   &::after {
@@ -127,6 +181,30 @@
     width: var(--sonar-size);
     height: var(--sonar-size);
     opacity: 0;
+  }
+}
+
+// Blip pulse animation
+@keyframes blipAnim {
+  0%,
+  10% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  15% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  30% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
   }
 }
 
