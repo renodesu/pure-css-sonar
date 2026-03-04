@@ -111,36 +111,52 @@
   }
 }
 
-// Blip dots
-.blip {
+// Moving bogeys
+.bogey {
   position: absolute;
 
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
 
   background: var(--green);
   border-radius: 50%;
-  box-shadow: 0 0 8px 2px rgb(0 255 0 / 60%);
+  box-shadow: 0 0 12px 5px rgb(0 255 0 / 50%);
 
-  animation: blipAnim 4s ease-out infinite;
+  // Pulse in sync with sweep (4s)
+  animation: bogeyPulse 4s ease-out infinite;
+}
 
-  &:nth-child(1) {
-    top: 30%;
-    left: 58%;
-    animation-delay: 0.5s;
-  }
+// Positions kept well inside the 80vmin circle (within ~35vmin of center)
+.bogey-1 {
+  top: 35%;
+  left: 57%;
+  animation:
+    bogeyPulse 4s ease-out 0.3s infinite,
+    bogeyDrift1 30s linear infinite;
+}
 
-  &:nth-child(2) {
-    top: 62%;
-    left: 35%;
-    animation-delay: 2s;
-  }
+.bogey-2 {
+  top: 58%;
+  left: 40%;
+  animation:
+    bogeyPulse 4s ease-out 1.8s infinite,
+    bogeyDrift2 45s linear infinite;
+}
 
-  &:nth-child(3) {
-    top: 40%;
-    left: 70%;
-    animation-delay: 3.2s;
-  }
+.bogey-3 {
+  top: 40%;
+  left: 38%;
+  animation:
+    bogeyPulse 4s ease-out 2.8s infinite,
+    bogeyDrift3 35s linear infinite;
+}
+
+.bogey-4 {
+  top: 54%;
+  left: 58%;
+  animation:
+    bogeyPulse 4s ease-out 0.8s infinite,
+    bogeyDrift4 50s linear infinite;
 }
 
 // Cardinal and diagonal lines
@@ -184,28 +200,59 @@
   }
 }
 
-// Blip pulse animation
-@keyframes blipAnim {
-  0%,
+// Bogey pulse — bright flash then slow fade, synced to sweep
+@keyframes bogeyPulse {
+  0% {
+    opacity: 0.9;
+    box-shadow: 0 0 10px 4px rgb(0 255 0 / 70%);
+  }
+
   10% {
-    opacity: 0;
-    transform: scale(0.5);
+    opacity: 0.7;
+    box-shadow: 0 0 6px 2px rgb(0 255 0 / 40%);
   }
 
-  15% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-
-  30% {
-    opacity: 0.6;
-    transform: scale(1);
+  50% {
+    opacity: 0.2;
   }
 
   100% {
-    opacity: 0;
-    transform: scale(0.5);
+    opacity: 0.05;
+    box-shadow: 0 0 4px 1px rgb(0 255 0 / 10%);
   }
+}
+
+// Drift paths — small movements staying inside the radar
+@keyframes bogeyDrift1 {
+  0% { translate: 0 0; }
+  25% { translate: -3vmin 2vmin; }
+  50% { translate: -1vmin 4vmin; }
+  75% { translate: 2vmin 1vmin; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bogeyDrift2 {
+  0% { translate: 0 0; }
+  25% { translate: 2vmin -2vmin; }
+  50% { translate: 4vmin 1vmin; }
+  75% { translate: 1vmin 3vmin; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bogeyDrift3 {
+  0% { translate: 0 0; }
+  25% { translate: 2vmin 3vmin; }
+  50% { translate: 4vmin 1vmin; }
+  75% { translate: 1vmin -2vmin; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bogeyDrift4 {
+  0% { translate: 0 0; }
+  25% { translate: -2vmin -2vmin; }
+  50% { translate: -4vmin 1vmin; }
+  75% { translate: -1vmin 3vmin; }
+  100% { translate: 0 0; }
 }
 
 // Initial fade-in

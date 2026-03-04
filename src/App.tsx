@@ -15,9 +15,10 @@ function App() {
         <div className="gridLine rotate-45" />
         <div className="gridLine rotate-90" />
         <div className="gridLine rotate-135" />
-        <div className="blip" />
-        <div className="blip" />
-        <div className="blip" />
+        <div className="bogey bogey-1" />
+        <div className="bogey bogey-2" />
+        <div className="bogey bogey-3" />
+        <div className="bogey bogey-4" />
       </div>
       <GithubMark />
     </div>
